@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>DOM Coding Dojo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    h1 {
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <h1>Manipulação do DOM</h1>
+  <p id="demo">Bem-vindo ao Coding Dojo!</p>
+  <button id="changeText" onclick="alterarTexto()">Alterar Texto</button>
+
+  <hr>
+
+  <label for="itemInput">Novo Item:</label>
+  <input type="text" id="itemInput" placeholder="Digite um item">
+
+  <label for="dateInput">Data:</label>
+  <input type="date" id="dateInput">
+
+  <button onclick="adicionarItem()">Adicionar</button>
+  <button onclick="removerItem()">Remover</button>
+
+  <ul id="lista"></ul>
+
+  <script>
+    function alterarTexto() {
+      
+      document.getElementById("demo").innerHTML = "Texto alterado!";
+    }
+
+    function adicionarItem() {
+      var novoItem = document.getElementById("itemInput").value;
+      var dataItem = document.getElementById("dateInput").value;
+
+      if (novoItem.trim() !== "") {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(`${dataItem}: ${novoItem}`));
+
+        var lista = document.getElementById("lista");
+        lista.insertBefore(li, lista.firstChild);
+
+        document.getElementById("itemInput").value = "";
+        document.getElementById("dateInput").value = "";
+      }
+    }
+
+    function removerItem() {
+
+      var lista = document.getElementById("lista");
+
+
+      if (lista.children.length > 0) {
+        
+        lista.removeChild(lista.lastChild);
+      }
+    }
+  </script>
+</body>
+</html>
