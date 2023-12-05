@@ -10,6 +10,12 @@
     }
     h1 {
       color: #007BFF;
+    } 
+    h1:hover {
+      color: blueviolet;
+    }
+    .completed {
+      text-decoration: line-through;
     }
   </style>
 </head>
@@ -33,7 +39,6 @@
 
   <script>
     function alterarTexto() {
-      
       document.getElementById("demo").innerHTML = "Texto alterado!";
     }
 
@@ -43,6 +48,24 @@
 
       if (novoItem.trim() !== "") {
         var li = document.createElement("li");
+
+        var checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.onclick = function () {
+          if (checkbox.checked) {
+            li.classList.add("completed");
+            var parent = li.parentNode;
+            parent.removeChild(li);
+            parent.appendChild(li);
+          } else {
+            li.classList.remove("completed");
+            var parent = li.parentNode;
+            parent.removeChild(li);
+            parent.insertBefore(li, parent.firstChild);
+          }
+        };
+
+        li.appendChild(checkbox);
         li.appendChild(document.createTextNode(`${dataItem}: ${novoItem}`));
 
         var lista = document.getElementById("lista");
@@ -54,12 +77,8 @@
     }
 
     function removerItem() {
-
       var lista = document.getElementById("lista");
-
-
       if (lista.children.length > 0) {
-        
         lista.removeChild(lista.lastChild);
       }
     }
