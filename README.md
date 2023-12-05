@@ -1,3 +1,3 @@
 # leo
 
-- 4 requisitos atendidos, resta 1. 
+- 5ª atividade concluída, extra não concluída.
